@@ -25,28 +25,6 @@ const validateCreateRecord = async (req, res, next) => {
     next();
 }
 
-/**
- * method to validate request query params
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
- * @returns 
- */
-const validateFilterInsightByDateRange = async (req, res, next) => {
-    await query('from', 'from is required').exists().run(req);
-    await query('from', 'from should be a date').isDate().run(req);
-
-    await query('to', 'to is required').exists().run(req);
-    await query('to', 'to should be a date').isDate().run(req);
-
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(422).send({ errors: errors.array() });
-    }
-    next();
-}
-
 module.exports = {
-    validateCreateRecord,
-    validateFilterInsightByDateRange
+    validateCreateRecord
 }

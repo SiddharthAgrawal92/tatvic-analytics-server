@@ -1,6 +1,6 @@
 const analyticsRoutes = require('express').Router();
 const { createRecord, getInsights, filterInsightByDateRange } = require('./analytics.controller');
-const { validateCreateRecord, validateFilterInsightByDateRange } = require('./analytics.validator');
+const { validateCreateRecord } = require('./analytics.validator');
 
 //to create a new record of each search
 analyticsRoutes.post('/', validateCreateRecord, createRecord);
@@ -9,6 +9,6 @@ analyticsRoutes.post('/', validateCreateRecord, createRecord);
 analyticsRoutes.get('/', getInsights);
 
 //to get the chart data
-analyticsRoutes.get('/filter', validateFilterInsightByDateRange, filterInsightByDateRange);
+analyticsRoutes.get('/filter', filterInsightByDateRange);
 
 module.exports = analyticsRoutes;
